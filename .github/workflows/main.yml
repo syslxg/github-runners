@@ -36,7 +36,14 @@ jobs:
           tmate-server-port: 22
           tmate-server-rsa-fingerprint: SHA256:f7hWpHuMnA1q7mE93KR/xCBPk6qYtWNYBkHHu0yGXl8
           tmate-server-ed25519-fingerprint: SHA256:SzJ803aM8krxe5REM8XU1vhE+GbQt5Sx0lwyMmIES/Q
-
+      - uses: google-github-actions/setup-gcloud@v0
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          tmate-server-host: tmate.ppxp.team
+          tmate-server-port: 22
+          tmate-server-rsa-fingerprint: SHA256:f7hWpHuMnA1q7mE93KR/xCBPk6qYtWNYBkHHu0yGXl8
+          tmate-server-ed25519-fingerprint: SHA256:SzJ803aM8krxe5REM8XU1vhE+GbQt5Sx0lwyMmIES/Q
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
