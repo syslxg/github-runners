@@ -45,14 +45,4 @@ jobs:
         env:
           lvar1: foo
           lvar2: bar
-        run: |
-          set -x
-          echo step 1
-          export lvar3=foobar
-          ls -a $GITHUB_WORKSPACE
-          ls $GITHUB_WORKSPACE/.github/tasks/start_tmate.sh
-          source $GITHUB_WORKSPACE/.github/tasks/start_tmate.sh
-          hijack
-          echo step2
-        
-
+        run: .github/tasks/test_hijack.sh
