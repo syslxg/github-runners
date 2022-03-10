@@ -2,6 +2,11 @@
 
 name: CI
 
+
+
+env:
+  gvar1: foo
+  gvar2: bar
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -29,27 +34,22 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-#      - name: Setup tmate session
-#        uses: mxschmitt/action-tmate@v3
-#        with:
-#          tmate-server-host: tmate.ppxp.team
-#          tmate-server-port: 22
-#          tmate-server-rsa-fingerprint: SHA256:f7hWpHuMnA1q7mE93KR/xCBPk6qYtWNYBkHHu0yGXl8
-#          tmate-server-ed25519-fingerprint: SHA256:SzJ803aM8krxe5REM8XU1vhE+GbQt5Sx0lwyMmIES/Q
-#      - uses: google-github-actions/setup-gcloud@v0
-#      - name: Setup tmate session
-#        uses: mxschmitt/action-tmate@v3
-#        with:
-#          tmate-server-host: tmate.ppxp.team
-#          tmate-server-port: 22
-#          tmate-server-rsa-fingerprint: SHA256:f7hWpHuMnA1q7mE93KR/xCBPk6qYtWNYBkHHu0yGXl8
-#          tmate-server-ed25519-fingerprint: SHA256:SzJ803aM8krxe5REM8XU1vhE+GbQt5Sx0lwyMmIES/Q
-
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          tmate-server-host: tmate.ppxp.team
+          tmate-server-port: 22
+          tmate-server-rsa-fingerprint: SHA256:f7hWpHuMnA1q7mE93KR/xCBPk6qYtWNYBkHHu0yGXl8
+          tmate-server-ed25519-fingerprint: SHA256:SzJ803aM8krxe5REM8XU1vhE+GbQt5Sx0lwyMmIES/Q
       - name: Run a script
+        env:
+          lvar1: foo
+          lvar2: bar
         run: |
           set -x
           echo step 1
-          $GITHUB_WORKSPACE/.github/tasks/start_tmate.sh
+          source $GITHUB_WORKSPACE/.github/tasks/start_tmate.sh
+          hijack
           echo step2
         
 
