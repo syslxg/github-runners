@@ -58,10 +58,11 @@ function main() {
   tiles=$(echo $tiles | sed 's/,$//')
 
 echo $issue_body
-egrep -i "\[x\] \d+\.\d+" <<< "${issue_body}"
-egrep -i "\[x\] \d\.\d" <<< "${issue_body}"
-grep -i "\[x\] \d\.\d" <<< "${issue_body}"
-
+egrep -i "\[x\] [0-9]+\.[0-9]+" <<< "${issue_body}"
+egrep -i "\[x\] [0-9]\.[0-9]" <<< "${issue_body}"
+grep -i "\[x\] [0-9]\.[0-9]" <<< "${issue_body}"
+grep -i "\[x\] [0-9].[0-9]" <<< "${issue_body}"
+grep -i "\[x\] 2." <<< "${issue_body}"
 
   local product_versions versions_checked
   if egrep -i "\[x\] \d+\.\d+" <<< "${issue_body}" > /dev/null; then
