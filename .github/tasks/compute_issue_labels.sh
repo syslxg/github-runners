@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -ex
+set -x
 
 : "${GITHUB_EVENT_PATH:-''}"
 
