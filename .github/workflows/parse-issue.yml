@@ -1,0 +1,26 @@
+name: Parse issue
+
+concurrency: Parse-issue-1
+
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+      - edited
+
+jobs:
+  add-labels:
+    runs-on: ubuntu-latest
+    outputs:
+      labels: ${{ steps.compute_issue_labels.outputs.labels }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - id: compute_issue_labels
+        name: Compute Issue Labels
+        run: .github/tasks/compute_issue_labels.sh
