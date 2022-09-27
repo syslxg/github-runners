@@ -57,6 +57,12 @@ function main() {
   fi
   tiles=$(echo $tiles | sed 's/,$//')
 
+echo $issue_body
+egrep -i "\[x\] \d+\.\d+" <<< "${issue_body}"
+egrep -i "\[x\] \d\.\d" <<< "${issue_body}"
+grep -i "\[x\] \d\.\d" <<< "${issue_body}"
+
+
   local product_versions versions_checked
   if egrep -i "\[x\] \d+\.\d+" <<< "${issue_body}" > /dev/null; then
     versions_checked=$(egrep -i "\[x\] \d+\.\d+" <<< "${issue_body}")
