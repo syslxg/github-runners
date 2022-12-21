@@ -1,0 +1,18 @@
+name: Test PR Merge
+on:
+  pull_request:
+    types:
+      - reopened
+      - opened
+      - edited
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+#          fetch-depth: 0
+      - name: cat file
+        run: cat test-pr-merge.txt
