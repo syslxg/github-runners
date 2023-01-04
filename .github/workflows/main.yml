@@ -24,7 +24,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     #runs-on: self-hosted
-    runs-on: gcp
+    runs-on: k8s
     container:
       image: gcr.io/tas-ppe/monorepo
       credentials:
@@ -33,7 +33,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 #     - name: Setup tmate session
 #       uses: mxschmitt/action-tmate@v3
 #       with:
