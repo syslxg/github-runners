@@ -1,0 +1,22 @@
+name: K8S runner env bug
+env:
+  foo: "YWJjCg=="
+on:
+  workflow_dispatch:
+    inputs:
+      bar:
+        description: "any string"
+        required: false
+jobs:
+  audit:
+    runs-on: k8s
+    container:
+      image: ubuntu
+    env:
+      bar: ${{ github.event.inputs.bar }}
+    steps:
+    - run: |
+        echo "foo: $foo"        
+        echo "$foo" | base64 -d
+        echo "bar: $bar"        
+        echo "$bar" | base64 -d
