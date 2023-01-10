@@ -1,0 +1,18 @@
+name: K8S runner env bug
+env:
+  foo: '{"user": "YWJjCg=="}'
+on:
+  workflow_dispatch:
+jobs:
+  envbug:
+    runs-on: k8s
+    container:
+      image: ubuntu
+    env:
+      bar: ${{ github.event.inputs.bar }}
+    steps:
+    - run: |
+        apt update
+        apt install -y jq
+        echo "foo: $foo"        
+        echo "$foo" | jq -r .user
