@@ -1,4 +1,4 @@
-name: K8S runner env bug
+name: K8S runner env issue
 env:
   foo: '{"user": "YWJjCg=="}'
 on:
@@ -8,11 +8,9 @@ jobs:
     runs-on: k8s
     container:
       image: ubuntu
-    env:
-      bar: ${{ github.event.inputs.bar }}
     steps:
     - run: |
-        apt update
-        apt install -y jq
+        apt-get update
+        apt-get install -y jq
         echo "foo: $foo"        
         echo "$foo" | jq -r .user
