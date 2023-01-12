@@ -4,12 +4,13 @@ env:
 on:
   workflow_dispatch:
 jobs:
-  envbug:
+  envissue:
     runs-on: k8s
     container:
       image: ubuntu
     steps:
     - run: |
+        sleep 1000
         apt-get update
         apt-get install -y jq
         echo "foo: $foo"        
